@@ -2,8 +2,8 @@ class Keyboard {
 	constructor() {
 	}
 	
-	accept(ComputerPartDisplayVisitor) {
-		ComputerPartDisplayVisitor.visit_keyboard(this);
+	accept(ComputerPartDiagnoseVisitor) {
+		ComputerPartDiagnoseVisitor.visit_keyboard(this);
 	}
 }
 
@@ -11,8 +11,8 @@ class Monitor {
 	constructor() {
 	}
 	
-	accept(ComputerPartDisplayVisitor) {
-		ComputerPartDisplayVisitor.visit_monitor(this);
+	accept(ComputerPartDiagnoseVisitor) {
+		ComputerPartDiagnoseVisitor.visit_monitor(this);
 	}
 }
 
@@ -20,8 +20,8 @@ class Mouse {
 	constructor() {
 	}
 	
-	accept(ComputerPartDisplayVisitor) {
-		ComputerPartDisplayVisitor.visit_mouse(this);
+	accept(ComputerPartDiagnoseVisitor) {
+		ComputerPartDiagnoseVisitor.visit_mouse(this);
 	}
 }
 
@@ -30,16 +30,16 @@ class Computer {
 		this.parts = [new Keyboard(), new Monitor(), new Mouse()];
 	}
 	
-	accept(ComputerPartDisplayVisitor) {
+	accept(ComputerPartDiagnoseVisitor) {
 		for(var i = 0; i < this.parts.length; i++) {
-			this.parts[i].accept(ComputerPartDisplayVisitor);
+			this.parts[i].accept(ComputerPartDiagnoseVisitor);
 		}
 		
-		ComputerPartDisplayVisitor.visit_computer(this);
+		ComputerPartDiagnoseVisitor.visit_computer(this);
 	}
 }
 
-class ComputerPartDisplayVisitor {
+class ComputerPartDiagnoseVisitor {
 	constructor() {
 		
 	}
@@ -62,4 +62,4 @@ class ComputerPartDisplayVisitor {
 }
 
 const computer = new Computer();
-computer.accept(new ComputerPartDisplayVisitor());
+computer.accept(new ComputerPartDiagnoseVisitor());
